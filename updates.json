@@ -1,7 +1,18 @@
 {
   "addons": {
     "denset@h0rse": {
-      "updates": []
+      "updates": [
+        {
+          "version": "1.1.1",
+          "update_link": "https://h0rsegg.github.io/denset-releases/denset-1.1.1.xpi",
+          "update_hash": "sha256:839702f1049b12fd36b97a98ecd141bb128cfbcaf5ffed46a6505502a316d1a9",
+          "applications": {
+            "gecko": {
+              "strict_min_version": "140.0"
+            }
+          }
+        }
+      ]
     }
   }
 }

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Install Denset</title>
+  <style>
+    /* The same palette as the extension (SPEC.md 10.3). */
+    :root {
+      --bg: #F5F5F0; --surface: #E6E6E1; --border: #D9D9D3; --text: #4A4A4A; --muted: #666666;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #1F1F1C; --surface: #2B2B28; --border: #3A3A36; --text: #D6D6D0; --muted: #9A9A94; color-scheme: dark; }
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    main { max-width: 640px; margin: 0 auto; padding: 40px 16px; }
+    h1 { margin: 0 0 4px; font-size: 26px; }
+    .lead { margin: 0 0 24px; }
+    .install {
+      display: inline-block;
+      padding: 10px 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .install:hover { border-color: var(--muted); }
+    .muted { color: var(--muted); }
+    ol { padding-left: 20px; }
+    li { margin-bottom: 6px; }
+    h2 { margin-top: 32px; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Denset</h1>
+    <p class="lead">Named sets of default tabs for Firefox, kept as bookmarks so they sync between your devices.</p>
+
+    <p><a class="install" href="denset.xpi">Install Denset</a></p>
+    <p id="version" class="muted">Firefox 140 or later, desktop only.</p>
+
+    <h2>Installing</h2>
+    <ol>
+      <li>Open this page in <strong>Firefox</strong> and click <strong>Install Denset</strong>.</li>
+      <li>If Firefox says it prevented this site from installing software, click <strong>Continue to Installation</strong>.</li>
+      <li>Click <strong>Add</strong>. Denset updates itself from now on.</li>
+      <li>Optional: click the puzzle-piece button in the toolbar and pin Denset so its button is always visible.</li>
+    </ol>
+
+    <h2>Getting started</h2>
+    <ol>
+      <li>Click the Denset button, type a name such as <em>Work</em> and press Enter.</li>
+      <li>Right-click any tab and choose <strong>Add to set</strong> &gt; <em>Work</em>. Or, when creating a set, choose <strong>From</strong> &gt; a tab group or the whole window.</li>
+      <li>Click <strong>Open</strong> on the set to open its tabs as a tab group. <strong>Reset</strong> puts them back to their default pages.</li>
+      <li>Click the arrow beside a set for its tabs and options, such as an overview page as the landing tab.</li>
+    </ol>
+    <p class="muted">Sets live in Other Bookmarks &gt; Denset, so Firefox Sync carries them to your other devices. Denset collects no data.</p>
+  </main>
+  <script>
+    // Show the version on offer, read from the same file Firefox uses for updates.
+    fetch("updates.json")
+      .then((response) => response.json())
+      .then((manifest) => {
+        const updates = Object.values(manifest.addons)[0].updates;
+        const latest = updates.at(-1);
+        if (latest) document.getElementById("version").textContent = `Version ${latest.version}. Firefox 140 or later, desktop only.`;
+      })
+      .catch(() => {});
+  </script>
+</body>
+</html>
